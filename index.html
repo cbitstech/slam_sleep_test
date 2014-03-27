@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>SLAM Sleep</title>
+<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+
+<script src="app/lib/jquery-2.1.0.min.js"></script>
+<script src="app/lib/lodash.min.js"></script>
+<script src="app/lib/purple-robot-client.js"></script>
+<script src="bootstrap/js/bootstrap.min.js"></script>
+
+<style>
+.btn {width:100%;}
+</style>
+
+<script>
+
+$( document ).ready(function() {
+//put yer stuff here
+$(".jumbotron").html("<h3>SLAM Sleep</h3>");
+
+});
+
+$(".main-form").on("submit", function(ev){
+
+	ev.preventDefault();
+	PurpleRobotClient.emitReading("bed_time",$("#bed_time").val());
+	PurpleRobotClient.emitReading("wake_time",$("#wake_time").val());
+	PurpleRobotClient.emitReading("feeling_good_bad",$("#feeling_good_bad").val());
+});
+
+</script>
+
+</head>
+
+<body>
+	<div class="jumbotron"></div>
+
+	<div class="container">
+		<form role="form" id="main-form">  
+			<div class="form-group">
+				<label>What time did you go to bed last night?</label><br/>
+				<input type="time" name="bed_time" id="bed_time">
+			</div>
+			<div class="form-group">
+				<label>What time did wake up this morning?</label><br/>
+				<input type="time" name="wake_time" id="wake_time">
+			</div>
+			<div class="form-group">
+				<label>How did you feel?</label><br/>
+				<input type="range" name="feeling_good_bad" min="0" max="10" id="feeling_good_bad">
+			</div>
+			<button type="submit" class="btn btn-primary">Save</button>
+		</form>
+	</div>
+
+</body>
+</html>
